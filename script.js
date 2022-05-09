@@ -19,11 +19,10 @@ const winningMessageElement = document.getElementById("winnerMessage");
 const winningMessageText = document.querySelector("[data-winner-message]");
 const restartButton = document.getElementById("restartBtn");
 let circleTurn;
+let turnCheck;
 
-class Player {
-  constructor(name) {
-    this.name = name;
-  }
+function Player(name) {
+  this.name = name;
 }
 
 promptUser.addEventListener("submit", (e) => {
@@ -50,6 +49,16 @@ promptUser.addEventListener("submit", (e) => {
 
 function startGame() {
   circleTurn = false;
+  turnCheck = false;
+  cellElements.forEach((cell) => {
+    cell.addEventListener("click", handleClick, { once: true });
+  });
+  setBoardClass();
+}
+
+function restartGame() {
+  turnCheck = !turnCheck;
+  circleTurn = turnCheck;
   cellElements.forEach((cell) => {
     cell.classList.remove(X_CLASS);
     cell.classList.remove(CIRCLE_CLASS);
@@ -60,7 +69,7 @@ function startGame() {
   winningMessageElement.classList.remove("show");
 }
 
-restartButton.addEventListener("click", startGame);
+restartButton.addEventListener("click", restartGame);
 
 function handleClick(e) {
   const cell = e.target;
@@ -87,7 +96,6 @@ function endGame(draw) {
     winningMessageText.innerText = `${
       circleTurn ? playerTwoDisplay.innerHTML : playerOneDisplay.innerHTML
     } Wins!`;
-    console.log(playerOneDisplay.innerHTML);
   }
   winningMessageElement.classList.add("show");
 }

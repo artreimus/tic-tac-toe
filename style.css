@@ -172,6 +172,8 @@ header .player-names {
   border: 1px solid black;
   padding: 0.25em 0.5em;
   cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s;
 }
 
 .winner-message .restartBtn:hover {
@@ -208,8 +210,11 @@ header .player-names {
 }
 
 .prompt-user .form-input {
-  width: 15rem;
+  width: 20rem;
   height: 3rem;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255, 0.8);
   color: black;
   font-size: 2rem;
 }
@@ -221,12 +226,13 @@ header .player-names {
   border: 1px solid black;
   padding: 0.25em 0.5em;
   cursor: pointer;
+  opacity: 0.6;
+  border-radius: 4px;
+  transition: 0.3s;
 }
 
 .prompt-user .submit-info:hover {
-  background-color: black;
-  color: white;
-  border-color: white;
+  opacity: 1;
 }
 
 .prompt-user.show {
