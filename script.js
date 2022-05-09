@@ -12,12 +12,41 @@ const WINNING_COMBINATIONS = [
 ];
 const cellElements = document.querySelectorAll("[data-cell]");
 const board = document.getElementById("board");
+const promptUser = document.querySelector("#prompt-user");
+const playerOneDisplay = document.querySelector("#player-one-display");
+const playerTwoDisplay = document.querySelector("#player-two-display");
 const winningMessageElement = document.getElementById("winnerMessage");
 const winningMessageText = document.querySelector("[data-winner-message]");
 const restartButton = document.getElementById("restartBtn");
 let circleTurn;
 
-startGame();
+class Player {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+promptUser.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const playerOne = document.querySelector("#player-one-name").value;
+  const playerTwo = document.querySelector("#player-two-name").value;
+
+  //Validate forms
+  if (playerOne === "" || playerTwo === "") {
+    //Get  form values
+  } else {
+    const playerOneObject = new Player(playerOne);
+    const playerTwoObject = new Player(playerTwo);
+    //Display the players' names
+    playerOneDisplay.innerHTML = playerOneObject.name;
+    playerTwoDisplay.innerHTML = playerTwoObject.name;
+
+    //Hide prompt
+    promptUser.classList.remove("show");
+    startGame();
+  }
+});
 
 function startGame() {
   circleTurn = false;
@@ -49,15 +78,16 @@ function handleClick(e) {
     switchTurns();
     setBoardClass();
   }
-
-  //switch turns
 }
 
 function endGame(draw) {
   if (draw) {
     winningMessageText.innerText = "Draw!";
   } else {
-    winningMessageText.innerText = `${circleTurn ? "O's" : "X's"} Wins!`;
+    winningMessageText.innerText = `${
+      circleTurn ? playerTwoDisplay.innerHTML : playerOneDisplay.innerHTML
+    } Wins!`;
+    console.log(playerOneDisplay.innerHTML);
   }
   winningMessageElement.classList.add("show");
 }

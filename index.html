@@ -9,6 +9,14 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <header>
+      <h1>TIC TAC TOE</h1>
+      <div class="player-names">
+        <div class="player-one-display" id="player-one-display"></div>
+        <div class="player-two-display" id="player-two-display"></div>
+      </div>
+    </header>
+
     <div class="board" id="board">
       <div class="cell" data-cell></div>
       <div class="cell" data-cell></div>
@@ -21,6 +29,37 @@
       <div class="cell" data-cell></div>
     </div>
 
+    <div class="prompt-user show" id="prompt-user">
+      <form action="" id="user-form">
+        <div class="row-container">
+          <label for="player-one-name">Player 1</label>
+          <input
+            type="text"
+            id="player-one-name"
+            class="form-input"
+            maxlength="10"
+          />
+        </div>
+        <div class="row-container">
+          <label for="player-two-name">Player 2</label>
+          <input
+            type="text"
+            id="player-two-name"
+            class="form-input"
+            maxlength="10"
+          />
+        </div>
+        <div class="row-container">
+          <input
+            type="submit"
+            value="Start Game"
+            name="Start Game"
+            class="submit-info"
+            id="submit-info"
+          />
+        </div>
+      </form>
+    </div>
     <div class="winner-message" id="winnerMessage">
       <div data-winner-message></div>
       <button class="restartBtn" id="restartBtn">Play Again</button>
